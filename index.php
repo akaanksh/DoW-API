@@ -1,5 +1,7 @@
 <?php
 $site = @$_GET['site'];
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 
 if (strpos($site, 'http://') !== false) {
 	$versite = $site;
