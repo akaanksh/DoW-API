@@ -438,8 +438,8 @@ else {
 	$error = array(
 		'status' => 'Down',
 		'code' => 'Unknown',
-		'codeMeaning' => 'Working on this part',
-		'inDepth' => 'Make sure your URL contains no illegal characters and is an actual website',
+		'codeMeaning' => 'Unknown',
+		'inDepth' => 'The website is completely down, so we can\'t get a response code',
 		'possibleFix' => 'Make sure your URL contains no illegal characters and is an actual website'
 	);
   echo json_encode($error, JSON_PRETTY_PRINT);
