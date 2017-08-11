@@ -26,6 +26,9 @@ STEPS:
 3. All you have to do is Parse the JSON.
 If you are interested, check out the [demo page][dow-site] and view the source code
 
+### Testing
+To test if your site/API is working, you can do this: `https://dow-api.herokuapp.com/test-codes?code=<any-reponse-code>`
+
 ## License
 GNU GENERAL PUBLIC LICENSE<br>
 Why?<br>
