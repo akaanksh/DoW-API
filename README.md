@@ -30,9 +30,7 @@ If you are interested, check out the [demo page][dow-site] and view the source c
 To test if your site/API is working, you can do this: `https://dow-api.herokuapp.com/test-codes?code=<any-reponse-code>`
 
 ## License
-GNU GENERAL PUBLIC LICENSE<br>
-Why?<br>
-To gain recognition. Will change to MIT over time.
+MIT LICENSE<br>
 
 Made with :heart: and :headphones: by akaanksh
 
