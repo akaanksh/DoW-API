@@ -1,5 +1,4 @@
 # Down or What? API
-Part of [akaanksh/apad][apad-repo]<br>
 Made with PHP
 
 ## Purpose
