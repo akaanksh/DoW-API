@@ -30,13 +30,13 @@ function check_url($url) {
     
     if (!curl_exec($c)) {
         $json->status = "down";
-        $json->time = $time;
+        $json->checkTime = $time;
         
         echo json_encode($json);
     }
     else {
         $json->status = "up";
-        $json->time = (((curl_getinfo($c)['size_download']/0.01)+(curl_getinfo($c)['namelookup_time']+curl_getinfo($c)['connect_time']+curl_getinfo($c)['appconnect']+curl_getinfo($c)['pretransfer_time']+curl_getinfo($c)['redirect_time']+curl_getinfo($c)['starttransfer_time'])*1000)/1000);
+        $json->latency = (((curl_getinfo($c)['size_download']/0.01)+(curl_getinfo($c)['namelookup_time']+curl_getinfo($c)['connect_time']+curl_getinfo($c)['appconnect']+curl_getinfo($c)['pretransfer_time']+curl_getinfo($c)['redirect_time']+curl_getinfo($c)['starttransfer_time'])*1000)/1000);
         $json->code = curl_getinfo($c)['http_code'];
         $json->size = curl_getinfo($c)['size_download'];
         $json->speed = 0.01;
@@ -45,7 +45,7 @@ function check_url($url) {
         $json->content = curl_getinfo($c)['content_type'];
         $json->ssl = explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1];
         $json->sslexp = curl_getinfo($c)['certinfo'][0]['Expire date'];
-        $json->time = $time;
+        $json->checkTime = $time;
         
         echo json_encode($json);
     }
