@@ -4,7 +4,6 @@ header("Access-Control-Allow-Origin: *");
 $url = $_GET['url'];
 $checkThis = $url . '?' . time() . '=' . time()*341;
 check_url($checkThis);
-
 function check_url($url) {
     $checkThis = $url . '?' . time() . '=' . time()*341;
     
@@ -35,6 +34,13 @@ function check_url($url) {
         echo json_encode($json);
     }
     else {
+        if (explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1] === null) {
+            $ssl = "Not present";
+            $sslExp = "Not present";
+        } else {
+            $ssl = explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1];
+            $sslExp = curl_getinfo($c)['certinfo'][0]['Expire date'];
+        };
         $json->status = "up";
         $json->latency = (((curl_getinfo($c)['size_download']/0.01)+(curl_getinfo($c)['namelookup_time']+curl_getinfo($c)['connect_time']+curl_getinfo($c)['appconnect']+curl_getinfo($c)['pretransfer_time']+curl_getinfo($c)['redirect_time']+curl_getinfo($c)['starttransfer_time'])*1000)/1000);
         $json->code = curl_getinfo($c)['http_code'];
@@ -43,13 +49,12 @@ function check_url($url) {
         $json->lookup = curl_getinfo($c)['namelookup_time']*1000;
         $json->establish = curl_getinfo($c)['connect_time']*1000;
         $json->content = curl_getinfo($c)['content_type'];
-        $json->ssl = if (explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1] === null) {"Not present"} else {curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1]};
-        $json->sslexp = if (explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][0]['Expire date'] === null) {"Not present"} else {curl_getinfo($c)['certinfo'][0]['Expire date']};
+        $json->ssl = $ssl;
+        $json->sslexp = $sslExp;
         $json->checkTime = $time;
         
         echo json_encode($json);
     }
     curl_close($c);
 }
-
 ?>
