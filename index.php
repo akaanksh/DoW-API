@@ -28,7 +28,7 @@ function check_url($url) {
     $json = new \stdClass();
     
     if (!curl_exec($c)) {
-        $json->status = "down";
+        $json->status = "Down";
         $json->checkTime = $time;
         
         echo json_encode($json);
@@ -41,7 +41,7 @@ function check_url($url) {
             $ssl = explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1];
             $sslExp = curl_getinfo($c)['certinfo'][0]['Expire date'];
         };
-        $json->status = "up";
+        $json->status = "Up";
         $json->latency = (((curl_getinfo($c)['size_download']/0.01)+(curl_getinfo($c)['namelookup_time']+curl_getinfo($c)['connect_time']+curl_getinfo($c)['appconnect']+curl_getinfo($c)['pretransfer_time']+curl_getinfo($c)['redirect_time']+curl_getinfo($c)['starttransfer_time'])*1000)/1000);
         $json->code = curl_getinfo($c)['http_code'];
         $json->size = curl_getinfo($c)['size_download'];
