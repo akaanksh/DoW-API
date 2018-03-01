@@ -43,8 +43,8 @@ function check_url($url) {
         $json->lookup = curl_getinfo($c)['namelookup_time']*1000;
         $json->establish = curl_getinfo($c)['connect_time']*1000;
         $json->content = curl_getinfo($c)['content_type'];
-        $json->ssl = explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1];
-        $json->sslexp = curl_getinfo($c)['certinfo'][0]['Expire date'];
+        $json->ssl = if (explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1] === null) {"Not present")} else {curl_getinfo($c)['certinfo'][1]['Subject'])[0])[1]};
+        $json->sslexp = if (explode('CN = ', explode('CN=', curl_getinfo($c)['certinfo'][0]['Expire date'] === null) {"Not present")} else {curl_getinfo($c)['certinfo'][0]['Expire date']};
         $json->checkTime = $time;
         
         echo json_encode($json);
