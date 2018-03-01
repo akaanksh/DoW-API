@@ -1,29 +1,34 @@
 # Down or What? API
 Made with PHP
 
-## Purpose
-Gets the HTTP response code of any site along with information about the code, and a suggested solution (if any) and delivers it in JSON format.
-
 Visit the site [here][dow-site]
 
 ## Usage
 API is currently open to anyone and you don't need an API key.
-STEPS:
+
+### STEPS:
 1. Just perform a POST or GET request to
-```https://dow-api.herokuapp.com/?site=<site-name-entered-by-user>```
+```https://dow-api.herokuapp.com/?url=<site-name-entered-by-user>```
 
 2. The Server will return JSON like this: (Ex: https://www.google.com)
 ```json
 {
   "status": "Up",
-  "code": "200", 
-  "codeMeaning": "OK", 
-  "inDepth": "Everything is operational", 
-  "possibleFix": "None" 
+  "latency": 4668.242775,
+  "code": 200,
+  "size": 46680,
+  "speed": 0.01,
+  "lookup": 16.587,
+  "establish": 20.562,
+  "content": "text\/html; charset=ISO-8859-1",
+  "ssl": "Google Internet Authority G2",
+  "sslexp": "May 8 10:39:00 2018 GMT",
+  "checkTime": "2018-03-01 17:26:04"
 }
 ```
 
-3. All you have to do is Parse the JSON.
+3. All you have to do is parse the JSON.
+
 If you are interested, check out the [demo page][dow-site] and view the source code
 
 ### Testing
