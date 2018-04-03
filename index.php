@@ -42,10 +42,10 @@ function check_url($url) {
             $sslExp = curl_getinfo($c)['certinfo'][0]['Expire date'];
         };
         $json->status = "Up";
-        $json->latency = (((curl_getinfo($c)['size_download']/0.01)+(curl_getinfo($c)['namelookup_time']+curl_getinfo($c)['connect_time']+curl_getinfo($c)['appconnect']+curl_getinfo($c)['pretransfer_time']+curl_getinfo($c)['redirect_time']+curl_getinfo($c)['starttransfer_time'])*1000)/1000);
+        $json->latency = (curl_getinfo($c)['namelookup_time']+curl_getinfo($c)['connect_time']+curl_getinfo($c)['appconnect']+curl_getinfo($c)['pretransfer_time']+curl_getinfo($c)['redirect_time']+curl_getinfo($c)['starttransfer_time'])*1000;
         $json->code = curl_getinfo($c)['http_code'];
         $json->size = curl_getinfo($c)['size_download'];
-        $json->speed = 0.01;
+        $json->speed = url_getinfo($c)['speed_download'] * 8 / 1024 / 1024;
         $json->lookup = curl_getinfo($c)['namelookup_time']*1000;
         $json->establish = curl_getinfo($c)['connect_time']*1000;
         $json->content = curl_getinfo($c)['content_type'];
