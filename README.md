@@ -1,7 +1,9 @@
 # Down or What? API
 Made with PHP
 
-Visit the site [here][dow-site]
+In production: [Hawk](https://usehawk.ga/)
+
+Visit the demo [here][dow-site]
 
 ## Usage
 API is currently open to anyone and you don't need an API key.
